@@ -1,7 +1,7 @@
 
 package com.usa.ciclo3.ciclo3.web;
 
-import com.usa.ciclo3.ciclo3.modelo.Reservation;
+import com.usa.ciclo3.ciclo3.modelo.Reservations;
 import com.usa.ciclo3.ciclo3.service.ReservationService;
 import java.util.List;
 import java.util.Optional;
@@ -28,24 +28,24 @@ public class ReservationController {
     private ReservationService reservationService;
     
     @GetMapping("/all")
-    public List<Reservation> getReservation(){
+    public List<Reservations> getReservations(){
         return reservationService.getAll();
     }
     
     @GetMapping("/{id}")
-    public Optional<Reservation> getReservation(@PathVariable("id") int id){
+    public Optional<Reservations> getReservations(@PathVariable("id") int id){
         return reservationService.getReservation(id);
     }
     
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public Reservation save(@RequestBody Reservation reservation){
-        return reservationService.save(reservation);
+    public Reservations save(@RequestBody Reservations reservations){
+        return reservationService.save(reservations);
     }
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
-    public Reservation update(@RequestBody Reservation reservation) {
-        return reservationService.update(reservation);
+    public Reservations update(@RequestBody Reservations reservations) {
+        return reservationService.update(reservations);
     }
 
     @DeleteMapping("/{id}")

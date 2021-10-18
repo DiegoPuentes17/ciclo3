@@ -1,7 +1,7 @@
 
 package com.usa.ciclo3.ciclo3.service;
 
-import com.usa.ciclo3.ciclo3.modelo.Reservation;
+import com.usa.ciclo3.ciclo3.modelo.Reservations;
 import com.usa.ciclo3.ciclo3.repository.ReservationRepository;
 import java.util.List;
 import java.util.Optional;
@@ -14,20 +14,20 @@ public class ReservationService {
     @Autowired
     private ReservationRepository reservationRepository;
     
-    public List<Reservation> getAll(){
+    public List<Reservations> getAll(){
         return reservationRepository.getAll();
     }
     
-    public Optional<Reservation> getReservation(int id){
+    public Optional<Reservations> getReservation(int id){
         
         return reservationRepository.getReservation(id);
     }
     
-    public Reservation save(Reservation reservation){
+    public Reservations save(Reservations reservation){
         if(reservation.getIdReservation()== null){
             return reservationRepository.save(reservation);
         }else{
-            Optional<Reservation> reservationNull = reservationRepository.getReservation(reservation.getIdReservation());
+            Optional<Reservations> reservationNull = reservationRepository.getReservation(reservation.getIdReservation());
             
             if(reservationNull.isEmpty()){
                 return reservationRepository.save(reservation);
@@ -37,41 +37,41 @@ public class ReservationService {
         }
         
     }
-    public Reservation update(Reservation reservation){
-        if(reservation.getIdReservation()!=null){
-            Optional<Reservation> e= reservationRepository.getReservation(reservation.getIdReservation());
+    public Reservations update(Reservations reservations){
+        if(reservations.getIdReservation()!=null){
+            Optional<Reservations> e= reservationRepository.getReservation(reservations.getIdReservation());
             if(!e.isEmpty()){
 
-                if(reservation.getStartDate()!=null){
-                    e.get().setStartDate(reservation.getStartDate());
+                if(reservations.getStartDate()!=null){
+                    e.get().setStartDate(reservations.getStartDate());
                 }
-                if(reservation.getDevolutionDate()!=null){
-                    e.get().setDevolutionDate(reservation.getDevolutionDate());
+                if(reservations.getDevolutionDate()!=null){
+                    e.get().setDevolutionDate(reservations.getDevolutionDate());
                 }
-                if(reservation.getClient()!=null){
-                    e.get().setClient(reservation.getClient());
+                if(reservations.getClient()!=null){
+                    e.get().setClient(reservations.getClient());
                 }
-                if(reservation.getDoctor()!=null){
-                    e.get().setDoctor(reservation.getDoctor());
+                if(reservations.getDoctor()!=null){
+                    e.get().setDoctor(reservations.getDoctor());
                 }
-                if(reservation.getScore()!=null){
-                    e.get().setScore(reservation.getScore());
+                if(reservations.getScore()!=null){
+                    e.get().setScore(reservations.getScore());
                 }
-                
+               
                 
                 reservationRepository.save(e.get());
                 return e.get();
             }else{
-                return reservation;
+                return reservations;
             }
         }else{
-            return reservation;
+            return reservations;
         }
     }
 
     public boolean delete(int reservationId) {
-        Boolean aBoolean = getReservation(reservationId).map(reservation -> {
-            reservationRepository.delete(reservation);
+        Boolean aBoolean = getReservation(reservationId).map(reservations -> {
+            reservationRepository.delete(reservations);
             return true;
         }).orElse(false);
         return aBoolean;

@@ -15,26 +15,26 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "reservation")
-public class Reservation implements Serializable {
+@Table(name = "reservations")
+public class Reservations implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idReservation;
     private Date startDate;
     private Date devolutionDate;
+    private String status = "created";
+    @ManyToOne
+    @JoinColumn(name = "idDoctor")
+    @JsonIgnoreProperties(value = {"reservations","messages"})
+    private Doctor doctor;
     
     
     @ManyToOne
     @JoinColumn(name = "idClient")
-    @JsonIgnoreProperties(value = {"reservation","message"})
+    @JsonIgnoreProperties(value = {"reservations","messages"})
     private Client client;
-    
-    @ManyToOne
-    @JoinColumn(name = "idDoctor")
-    @JsonIgnoreProperties(value = {"reservation","message"})
-    private Doctor doctor;
-    
+
     private String score;
     public Integer getIdReservation() {
         return idReservation;
@@ -86,13 +86,14 @@ public class Reservation implements Serializable {
         this.score = score;
     }
 
+    public String getStatus() {
+        return status;
+    }
 
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
-    
-
-    
-
-    
     
     
 }

@@ -1,6 +1,6 @@
 package com.usa.ciclo3.ciclo3.service;
 
-import com.usa.ciclo3.ciclo3.modelo.Message;
+import com.usa.ciclo3.ciclo3.modelo.Messages;
 import com.usa.ciclo3.ciclo3.repository.MessageRepository;
 import java.util.List;
 import java.util.Optional;
@@ -12,47 +12,47 @@ public class MessageService {
     @Autowired
     private MessageRepository messageRepository;
     
-    public List<Message> getAll(){
+    public List<Messages> getAll(){
         return messageRepository.getAll();
     }
-    public Optional<Message> getMessage(int id){
+    public Optional<Messages> getMessage(int id){
         
-        return messageRepository.getMessage(id);
+        return messageRepository.getMessages(id);
     }
-    public Message save(Message message){
-        if(message.getIdMessage()== null){
-            return messageRepository.Save(message);
+    public Messages save(Messages messages){
+        if(messages.getIdMessage()== null){
+            return messageRepository.Save(messages);
         }else{
-            Optional<Message> messageNull = messageRepository.getMessage(message.getIdMessage());
+            Optional<Messages> messageNull = messageRepository.getMessages(messages.getIdMessage());
             
             if(messageNull.isEmpty()){
-                return messageRepository.Save(message);
+                return messageRepository.Save(messages);
             }else{
-                return message;
+                return messages;
             }
         }
         
     }
-    public Message update(Message message){
-        if(message.getIdMessage()!=null){
-            Optional<Message> CRUD= messageRepository.getMessage(message.getIdMessage());
+    public Messages update(Messages messages){
+        if(messages.getIdMessage()!=null){
+            Optional<Messages> CRUD= messageRepository.getMessages(messages.getIdMessage());
             if(!CRUD.isEmpty()){
-                if(message.getMessageText()!=null){
-                    CRUD.get().setMessageText(message.getMessageText());
+                if(messages.getMessageText()!=null){
+                    CRUD.get().setMessageText(messages.getMessageText());
                 }
-                if(message.getDoctor()!=null){
-                    CRUD.get().setDoctor(message.getDoctor());
+                if(messages.getDoctor()!=null){
+                    CRUD.get().setDoctor(messages.getDoctor());
                 }
-                 if(message.getClient()!=null){
-                    CRUD.get().setClient(message.getClient());
+                 if(messages.getClient()!=null){
+                    CRUD.get().setClient(messages.getClient());
                 }
                 messageRepository.Save(CRUD.get());
                 return CRUD.get();
             }else{
-                return message;
+                return messages;
             }
         }else{
-            return message;
+            return messages;
         }
     }
 

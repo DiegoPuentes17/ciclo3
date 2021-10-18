@@ -1,7 +1,7 @@
 
 package com.usa.ciclo3.ciclo3.repository;
 
-import com.usa.ciclo3.ciclo3.modelo.Reservation;
+import com.usa.ciclo3.ciclo3.modelo.Reservations;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,16 +13,16 @@ public class ReservationRepository {
     @Autowired
     private ReservationCrudRepository reservationCrudRepository;
     
-    public List<Reservation> getAll(){
-        return (List<Reservation>) reservationCrudRepository.findAll();
+    public List<Reservations> getAll(){
+        return (List<Reservations>) reservationCrudRepository.findAll();
     }
-    public Optional<Reservation> getReservation(int id){
+    public Optional<Reservations> getReservation(int id){
         return reservationCrudRepository.findById(id);
     }
-    public Reservation save(Reservation reservation){
-        return reservationCrudRepository.save(reservation);
+    public Reservations save(Reservations reservations){
+        return reservationCrudRepository.save(reservations);
     }
-    public void delete(Reservation reservation){
-        reservationCrudRepository.delete(reservation);
+    public void delete(Reservations reservations){
+        reservationCrudRepository.delete(reservations);
     }
 }

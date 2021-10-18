@@ -44,8 +44,8 @@ public class ClientService {
                 if(client.getEmail()!=null){
                     CRUD.get().setEmail(client.getEmail());
                 }
-                if(client.getMessage()!=null){
-                    CRUD.get().setMessage(client.getMessage());
+                if(client.getMessages()!=null){
+                    CRUD.get().setMessages(client.getMessages());
                 }
                 if(client.getPassword()!=null){
                     CRUD.get().setPassword(client.getPassword());

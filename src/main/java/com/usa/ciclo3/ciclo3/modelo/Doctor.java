@@ -23,9 +23,9 @@ public class Doctor implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    private String name;
     private String department;
     private Integer year;
-    private String name;
     private String description;
     
     @ManyToOne
@@ -35,12 +35,14 @@ public class Doctor implements Serializable{
     
     @OneToMany(cascade = {CascadeType.PERSIST},mappedBy="doctor")
     @JsonIgnoreProperties(value = {"doctor","client"})
-    private List<Message> message;
+    private List<Messages> messages;
     
     @OneToMany(cascade = {CascadeType.PERSIST},mappedBy="doctor")
     @JsonIgnoreProperties(value = {"doctor","client"})
-    private List<Reservation> reservation;
-
+    private List<Reservations> reservations;
+    
+    
+    
     public Integer getId() {
         return id;
     }
@@ -48,7 +50,21 @@ public class Doctor implements Serializable{
     public void setId(Integer id) {
         this.id = id;
     }
+    public List<Messages> getMessages() {
+        return messages;
+    }
 
+    public void setMessages(List<Messages> messages) {
+        this.messages = messages;
+    }
+
+    public List<Reservations> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(List<Reservations> reservations) {
+        this.reservations = reservations;
+    }
     public String getDepartment() {
         return department;
     }
@@ -89,24 +105,6 @@ public class Doctor implements Serializable{
         this.specialty = specialty;
     }
 
-    public List<Message> getMessage() {
-        return message;
-    }
-
-    public void setMessage(List<Message> message) {
-        this.message = message;
-    }
-
-    public List<Reservation> getReservation() {
-        return reservation;
-    }
-
-    public void setReservation(List<Reservation> reservation) {
-        this.reservation = reservation;
-    }
-
-    
-    
-    
+ 
     
 }

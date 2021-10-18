@@ -1,7 +1,7 @@
 
 package com.usa.ciclo3.ciclo3.web;
 
-import com.usa.ciclo3.ciclo3.modelo.Message;
+import com.usa.ciclo3.ciclo3.modelo.Messages;
 import com.usa.ciclo3.ciclo3.service.MessageService;
 import java.util.List;
 import java.util.Optional;
@@ -30,24 +30,24 @@ public class MessageController {
     private MessageService messageService;
     
     @GetMapping("/all")
-    public List<Message> getMessage(){
+    public List<Messages> getMessage(){
         return messageService.getAll();
     }
     
     @GetMapping("/{id}")
-    public Optional<Message> getMessage(@PathVariable("id") int id){
+    public Optional<Messages> getMessage(@PathVariable("id") int id){
         return messageService.getMessage(id);
     }
     
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public Message save(@RequestBody Message message){
-        return messageService.save(message);
+    public Messages save(@RequestBody Messages messages){
+        return messageService.save(messages);
     }
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
-    public Message update(@RequestBody Message message) {
-        return messageService.update(message);
+    public Messages update(@RequestBody Messages messages) {
+        return messageService.update(messages);
     }
 
     @DeleteMapping("/{id}")

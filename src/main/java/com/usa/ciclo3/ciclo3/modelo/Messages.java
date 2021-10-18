@@ -12,24 +12,24 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "message")
-public class Message implements Serializable {
+@Table(name = "messages")
+public class Messages implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idMessage;
     private String messageText;
-    
+    @ManyToOne
+    @JoinColumn(name = "idDoctor")
+    @JsonIgnoreProperties(value ={"messages","reservations"})
+    private Doctor doctor;
     
     @ManyToOne
     @JoinColumn(name = "idClient")
-    @JsonIgnoreProperties(value ={"message","reservation"})
+    @JsonIgnoreProperties(value ={"messages","reservations"})
     private Client client;
     
-    @ManyToOne
-    @JoinColumn(name = "idDoctor")
-    @JsonIgnoreProperties(value ={"message","reservation"})
-    private Doctor doctor;
+    
 
     public Integer getIdMessage() {
         return idMessage;

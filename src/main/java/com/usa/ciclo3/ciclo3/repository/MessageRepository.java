@@ -1,7 +1,7 @@
 
 package com.usa.ciclo3.ciclo3.repository;
 
-import com.usa.ciclo3.ciclo3.modelo.Message;
+import com.usa.ciclo3.ciclo3.modelo.Messages;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,16 +13,16 @@ public class MessageRepository {
     @Autowired
     private MessageCrudRepository messageCrudRepository;
     
-    public List<Message> getAll(){
-        return (List<Message>) messageCrudRepository.findAll();
+    public List<Messages> getAll(){
+        return (List<Messages>) messageCrudRepository.findAll();
     }
-    public Optional<Message> getMessage(int id){
+    public Optional<Messages> getMessages(int id){
         return messageCrudRepository.findById(id);
     }
-    public Message Save(Message message){
-        return messageCrudRepository.save(message);
+    public Messages Save(Messages messages){
+        return messageCrudRepository.save(messages);
     }
-    public void delete(Message message){
-        messageCrudRepository.delete(message);
+    public void delete(Messages messages){
+        messageCrudRepository.delete(messages);
     }
 }

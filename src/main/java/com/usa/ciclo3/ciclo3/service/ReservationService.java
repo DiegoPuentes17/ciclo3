@@ -54,6 +54,9 @@ public class ReservationService {
                 if(reservation.getDoctor()!=null){
                     e.get().setDoctor(reservation.getDoctor());
                 }
+                if(reservation.getScore()!=null){
+                    e.get().setScore(reservation.getScore());
+                }
                 
                 
                 reservationRepository.save(e.get());

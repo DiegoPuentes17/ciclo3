@@ -34,7 +34,8 @@ public class Reservation implements Serializable {
     @JoinColumn(name = "idDoctor")
     @JsonIgnoreProperties(value = {"reservation","message"})
     private Doctor doctor;
-
+    
+    private String score;
     public Integer getIdReservation() {
         return idReservation;
     }
@@ -75,6 +76,14 @@ public class Reservation implements Serializable {
 
     public void setDoctor(Doctor doctor) {
         this.doctor = doctor;
+    }
+
+    public String getScore() {
+        return score;
+    }
+
+    public void setScore(String score) {
+        this.score = score;
     }
 
 

@@ -34,4 +34,41 @@ public class DoctorService {
         }
         
     }
+        public Doctor update(Doctor doctor){
+        if(doctor.getId()!=null){
+            Optional<Doctor> CRUD= doctorRepository.getDoctor(doctor.getId());
+            if(!CRUD.isEmpty()){
+                if(doctor.getName()!=null){
+                    CRUD.get().setName(doctor.getName());
+                }
+                if(doctor.getDepartment()!=null){
+                    CRUD.get().setDepartment(doctor.getDepartment());
+                }
+                if(doctor.getYear()!=null){
+                    CRUD.get().setYear(doctor.getYear());
+                }
+                if(doctor.getDescription()!=null){
+                    CRUD.get().setDescription(doctor.getDescription());
+                }
+                if(doctor.getSpecialty()!=null){
+                    CRUD.get().setSpecialty(doctor.getSpecialty());
+                }
+                
+                doctorRepository.Save(CRUD.get());
+                return CRUD.get();
+            }else{
+                return doctor;
+            }
+        }else{
+            return doctor;
+        }
+    }
+
+    public boolean delete(int id) {
+        Boolean aBoolean = getDoctor(id).map(doctor -> {
+            doctorRepository.delete(doctor);
+            return true;
+        }).orElse(false);
+        return aBoolean;
+    }
 }

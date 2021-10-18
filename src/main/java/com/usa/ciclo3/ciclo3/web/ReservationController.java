@@ -1,9 +1,8 @@
 
 package com.usa.ciclo3.ciclo3.web;
 
-
-import com.usa.ciclo3.ciclo3.modelo.Doctor;
-import com.usa.ciclo3.ciclo3.service.DoctorService;
+import com.usa.ciclo3.ciclo3.modelo.Reservation;
+import com.usa.ciclo3.ciclo3.service.ReservationService;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,37 +20,37 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("api/Doctor")
+@RequestMapping("api/Reservation")
 @CrossOrigin(origins = "*",methods = {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE})
-public class DoctorController {
+public class ReservationController {
     
     @Autowired
-    private DoctorService doctorService;
+    private ReservationService reservationService;
     
     @GetMapping("/all")
-    public List<Doctor> getDoctor(){
-        return doctorService.getAll();
+    public List<Reservation> getReservation(){
+        return reservationService.getAll();
     }
     
     @GetMapping("/{id}")
-    public Optional<Doctor> getDoctor(@PathVariable("id") int id){
-        return doctorService.getDoctor(id);
+    public Optional<Reservation> getReservation(@PathVariable("id") int id){
+        return reservationService.getReservation(id);
     }
     
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public Doctor save(@RequestBody Doctor doctor){
-        return doctorService.save(doctor);
+    public Reservation save(@RequestBody Reservation reservation){
+        return reservationService.save(reservation);
     }
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
-    public Doctor update(@RequestBody Doctor doctor) {
-        return doctorService.update(doctor);
+    public Reservation update(@RequestBody Reservation reservation) {
+        return reservationService.update(reservation);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public boolean delete(@PathVariable("id") int Id) {
-        return doctorService.delete(Id);
+        return reservationService.delete(Id);
     }
 }

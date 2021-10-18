@@ -1,9 +1,8 @@
 
 package com.usa.ciclo3.ciclo3.web;
 
-
-import com.usa.ciclo3.ciclo3.modelo.Doctor;
-import com.usa.ciclo3.ciclo3.service.DoctorService;
+import com.usa.ciclo3.ciclo3.modelo.Message;
+import com.usa.ciclo3.ciclo3.service.MessageService;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,38 +19,40 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+
+
 @RestController
-@RequestMapping("api/Doctor")
+@RequestMapping("api/Message")
 @CrossOrigin(origins = "*",methods = {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE})
-public class DoctorController {
+public class MessageController {
     
     @Autowired
-    private DoctorService doctorService;
+    private MessageService messageService;
     
     @GetMapping("/all")
-    public List<Doctor> getDoctor(){
-        return doctorService.getAll();
+    public List<Message> getMessage(){
+        return messageService.getAll();
     }
     
     @GetMapping("/{id}")
-    public Optional<Doctor> getDoctor(@PathVariable("id") int id){
-        return doctorService.getDoctor(id);
+    public Optional<Message> getMessage(@PathVariable("id") int id){
+        return messageService.getMessage(id);
     }
     
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public Doctor save(@RequestBody Doctor doctor){
-        return doctorService.save(doctor);
+    public Message save(@RequestBody Message message){
+        return messageService.save(message);
     }
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
-    public Doctor update(@RequestBody Doctor doctor) {
-        return doctorService.update(doctor);
+    public Message update(@RequestBody Message message) {
+        return messageService.update(message);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public boolean delete(@PathVariable("id") int Id) {
-        return doctorService.delete(Id);
+    public boolean delete(@PathVariable("id") int id) {
+        return messageService.delete(id);
     }
 }

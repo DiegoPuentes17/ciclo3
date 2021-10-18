@@ -22,4 +22,8 @@ public class DoctorRepository {
     public Doctor Save(Doctor doctor){
         return doctorCrudRepository.save(doctor);
     }
+    public void delete(Doctor doctor){
+        doctorCrudRepository.delete(doctor);
+    }
+
 }

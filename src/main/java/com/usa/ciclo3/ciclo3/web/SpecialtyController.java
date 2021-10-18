@@ -1,9 +1,8 @@
 
 package com.usa.ciclo3.ciclo3.web;
 
-
-import com.usa.ciclo3.ciclo3.modelo.Doctor;
-import com.usa.ciclo3.ciclo3.service.DoctorService;
+import com.usa.ciclo3.ciclo3.modelo.Specialty;
+import com.usa.ciclo3.ciclo3.service.SpecialtyService;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,37 +20,36 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("api/Doctor")
+@RequestMapping("api/Specialty")
 @CrossOrigin(origins = "*",methods = {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE})
-public class DoctorController {
-    
-    @Autowired
-    private DoctorService doctorService;
+public class SpecialtyController {
+   @Autowired
+    private SpecialtyService specialtyService;
     
     @GetMapping("/all")
-    public List<Doctor> getDoctor(){
-        return doctorService.getAll();
+    public List<Specialty> getSpecialty(){
+        return specialtyService.getAll();
     }
     
     @GetMapping("/{id}")
-    public Optional<Doctor> getDoctor(@PathVariable("id") int id){
-        return doctorService.getDoctor(id);
+    public Optional<Specialty> getSpecialty(@PathVariable("id") int id){
+        return specialtyService.getSpecialty(id);
     }
     
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public Doctor save(@RequestBody Doctor doctor){
-        return doctorService.save(doctor);
+    public Specialty save(@RequestBody Specialty specialty){
+        return specialtyService.save(specialty);
     }
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
-    public Doctor update(@RequestBody Doctor doctor) {
-        return doctorService.update(doctor);
+    public Specialty update(@RequestBody Specialty specialty) {
+        return specialtyService.update(specialty);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public boolean delete(@PathVariable("id") int Id) {
-        return doctorService.delete(Id);
+        return specialtyService.delete(Id);
     }
 }

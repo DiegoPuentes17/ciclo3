@@ -2,6 +2,8 @@
 package com.usa.ciclo3.ciclo3.web;
 
 import com.usa.ciclo3.ciclo3.modelo.Reservations;
+import com.usa.ciclo3.ciclo3.modelo.custom.CountClient;
+import com.usa.ciclo3.ciclo3.modelo.custom.StatusAmount;
 import com.usa.ciclo3.ciclo3.service.ReservationService;
 import java.util.List;
 import java.util.Optional;
@@ -27,6 +29,7 @@ public class ReservationController {
     @Autowired
     private ReservationService reservationService;
     
+    //RETO 3
     @GetMapping("/all")
     public List<Reservations> getReservations(){
         return reservationService.getAll();
@@ -42,6 +45,8 @@ public class ReservationController {
     public Reservations save(@RequestBody Reservations reservations){
         return reservationService.save(reservations);
     }
+    
+    //RETO 4
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
     public Reservations update(@RequestBody Reservations reservations) {
@@ -53,4 +58,20 @@ public class ReservationController {
     public boolean delete(@PathVariable("id") int Id) {
         return reservationService.delete(Id);
     }
+    
+    //RETO 5
+
+    @GetMapping("/report-status")
+    public StatusAmount getReservationStatusAmount(){
+        return reservationService.getStatusReport();
+    }
+    @GetMapping("/report-clients")
+    public List<CountClient> getCountClient(){
+        return reservationService.getTopClient();
+    }
+    @GetMapping("/report-dates/{dateOne}/{dateTwo}")
+    public List<Reservations> getDatesReport(@PathVariable("dateOne")String date1,@PathVariable("dateTwo")String date2){
+        return reservationService.getClientPeriod(date1, date2);
+    }
+
 }

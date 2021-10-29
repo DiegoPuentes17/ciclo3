@@ -23,7 +23,7 @@ public class Reservations implements Serializable {
     private Integer idReservation;
     private Date startDate;
     private Date devolutionDate;
-    private String status = "created";
+    private String status;
     @ManyToOne
     @JoinColumn(name = "idDoctor")
     @JsonIgnoreProperties(value = {"reservations","messages"})
@@ -93,7 +93,4 @@ public class Reservations implements Serializable {
     public void setStatus(String status) {
         this.status = status;
     }
-
-    
-    
 }

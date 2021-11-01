@@ -4,8 +4,6 @@ package com.usa.ciclo3.ciclo3.modelo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,7 +24,7 @@ public class Reservations implements Serializable {
     private String status;
     @ManyToOne
     @JoinColumn(name = "idDoctor")
-    @JsonIgnoreProperties(value = {"reservations","messages"})
+    @JsonIgnoreProperties(value = {"reservations"})
     private Doctor doctor;
     
     
@@ -36,6 +34,7 @@ public class Reservations implements Serializable {
     private Client client;
 
     private String score;
+    
     public Integer getIdReservation() {
         return idReservation;
     }

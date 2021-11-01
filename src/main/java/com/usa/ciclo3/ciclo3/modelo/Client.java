@@ -26,11 +26,11 @@ public class Client implements Serializable {
     
     
     @OneToMany(cascade = {CascadeType.PERSIST},mappedBy="client")
-    @JsonIgnoreProperties("{client,doctor}")
+    @JsonIgnoreProperties(value = {"client","doctor"})
     private List<Messages> messages;
     
     @OneToMany(cascade = {CascadeType.PERSIST},mappedBy="client")
-    @JsonIgnoreProperties("client,doctor}")
+    @JsonIgnoreProperties(value = {"client","doctor"})
     private List<Reservations> reservations;
     
     public List<Messages> getMessages() {
@@ -89,15 +89,5 @@ public class Client implements Serializable {
         this.age = age;
     }
 
-    
-
-    
-    
-
-    
-
-    
-    
-    
     
 }
